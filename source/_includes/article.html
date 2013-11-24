@@ -1,23 +1,19 @@
 {% unless page.no_header %}
-  <header>
-    {% if index %}
-      <h1 class="entry-title"><a href="{{ root_url }}{{ post.url }}">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</a></h1>
+  <div class="post_header">
+    {% if false %}
+      <div class="post_title">
+        <a href="{{ root_url }}{{ post.url }}">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</a>
+      </div>
     {% else %}
-      <h1 class="entry-title">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
+      <div class="post_title">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</div>
     {% endif %}
-    {% unless page.meta == false %}
-      <p class="meta">
-        {% include post/date.html %}{{ time }}
-        {% if site.disqus_short_name and page.comments != false and post.comments != false and site.disqus_show_comment_count == true %}
-           | <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#disqus_thread"
-             data-disqus-identifier="{% if post.meta.disqus_id %}{{ post.meta.disqus_id }}{% else %}{{ site.url }}{{ post.url }}{% endif %}">Comments</a>
-        {% endif %}
-      </p>
-    {% endunless %}
-  </header>
+    <div class="post_date">{{ time }} 2013 October 29 - 10:22</div>
+  </div>
 {% endunless %}
 {% if index %}
-  <div class="entry-content">{{ content | excerpt }}</div>
+  <div class="post_body">
+    {{ content | excerpt }}
+  </div>
   {% capture excerpted %}{{ content | has_excerpt }}{% endcapture %}
   {% if excerpted == 'true' %}
     <footer>
@@ -25,5 +21,13 @@
     </footer>
   {% endif %}
 {% else %}
-<div class="entry-content">{{ content }}</div>
+<div class="post_body">
+  {{ content }}
+</div>
 {% endif %}
+
+<div class="post_footer">
+  <div class="post_author">
+    Post author: <span class="post_author_name">Kresshy</span>
+  </div>
+</div>
