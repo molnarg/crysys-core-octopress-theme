@@ -3,27 +3,22 @@ layout: default
 ---
 
 <div>
-<article role="article">
-  {% if page.title %}
-  <header>
-    <h1 class="entry-title">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
-    {% if page.date %}<p class="meta">{% include post/date.html %}{{ time }}</p>{% endif %}
-  </header>
-  {% endif %}
-  {{ content }}
-  {% unless page.footer == false %}
-    <footer>
-      {% if page.date or page.author %}<p class="meta">
-        {% if page.author %}{% include post/author.html %}{% endif %}
-        {% include post/date.html %}{% if updated %}{{ updated }}{% else %}{{ time }}{% endif %}
-        {% if page.categories %}{% include post/categories.html %}{% endif %}
-      </p>{% endif %}
-      {% unless page.sharing == false %}
-        {% include post/sharing.html %}
-      {% endunless %}
-    </footer>
-  {% endunless %}
-</article>
+<div class="blog-index">
+  <div class="post">
+    <div class="post_header">
+      <div class="post_title">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</div>
+      <div class="post_date">{% include post/date.html %}{{ time }}</div>
+    </div>
+    <div class="post_body">
+      {{ content }}
+    </div>
+    <div class="post_footer">
+      <div class="post_author">
+        Post author: <span class="post_author_name">{{ post.author }}</span>
+      </div>
+    </div>
+  </div>
+</div>
 {% if site.disqus_short_name and page.comments == true %}
   <section>
     <h1>Comments</h1>
